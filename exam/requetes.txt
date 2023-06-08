@@ -1,0 +1,74 @@
+# Exemple de requêtes
+
+## Usage
+
+### Récupérer la liste des Uses
+curl -X 'GET' \
+  'http://127.0.0.1:8000/uses' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Basic Ym9iOmJ1aWxkZXI='
+
+### Récupérer la liste des Subjects
+curl -X 'GET' \
+  'http://127.0.0.1:8000/subjects' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Basic Ym9iOmJ1aWxkZXI='
+
+ou pour restreindre à un use en particulier
+
+curl -X 'GET' \
+  'http://127.0.0.1:8000/subjects?use=Test%20de%20positionnement' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Basic Ym9iOmJ1aWxkZXI='
+
+### Récupérer la liste des questions
+curl -X 'GET' \
+  'http://127.0.0.1:8000/questions?nb=5' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Basic Ym9iOmJ1aWxkZXI='
+
+ou pour restreindre à un uses et des subjects
+
+curl -X 'GET' \
+  'http://127.0.0.1:8000/questions?nb=10&use=Test%20de%20positionnement&subject=BDD%2CDocker' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Basic Ym9iOmJ1aWxkZXI='
+
+## Admin
+
+### Créer une question (ou pas)
+curl -X 'POST' \
+  'http://127.0.0.1:8000/question' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Basic Ym9iOmJ1aWxkZXI=' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "question": "Je pose une question",
+  "subject": "Sur un sujet donné",
+  "use": "Dans un contexte",
+  "correct": "A",
+  "responseA": "première réponse",
+  "responseB": "autre réponse",
+  "responseC": "troisième choix",
+  "responseD": "",
+  "remark": ""
+}'
+
+et avec le droit de le faire 
+
+curl -X 'POST' \
+  'http://127.0.0.1:8000/question' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Basic YWRtaW46NGRtMU4=' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "question": "Je pose une question",
+  "subject": "Sur un sujet donné",
+  "use": "Dans un contexte",
+  "correct": "A",
+  "responseA": "première réponse",
+  "responseB": "autre réponse",
+  "responseC": "troisième choix",
+  "responseD": "",
+  "remark": ""
+}'
